@@ -1,0 +1,76 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+
+      {
+        "label": "force-clean MovieAppsProject",
+        "type": "shell",
+        "command": "powershell",
+        "args": [
+          "-NoProfile",
+          "-Command",
+          "if (Test-Path obj) { Remove-Item -Recurse -Force obj }; if (Test-Path bin) { Remove-Item -Recurse -Force bin }"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "problemMatcher": []
+      },
+
+
+
+      {
+        "label": "clean MovieAppsProject",
+        "dependsOn": [  "force-clean MovieAppsProject" ],
+        "command": "dotnet",
+        "type": "process",
+        "args": [ "clean"],
+        "problemMatcher": "$msCompile"
+      },
+
+
+
+      {
+        "label": "build MovieAppsProject",
+        "dependsOn": [  "clean MovieAppsProject" ],
+        "command": "dotnet",
+        "type": "process",
+        "args": [ "build","--no-incremental" ],
+        "problemMatcher": "$msCompile"
+      },
+
+      {
+        "label": "InitialCreateUsrIdtn MovieAppsProject",
+        "dependsOn": [  "build MovieAppsProject" ],
+        "command": "dotnet",
+        "type": "process",
+        "args": [ "ef", "migrations", "add", "InitialCreate", "--context", "ApplicationDbContext", "--output-dir", "Migrations/DataContext", "--project" ],
+        "problemMatcher": "$msCompile"
+      },
+      {
+        "label": "DatabaseUpdateUserIdtn MovieAppsProject",
+        "dependsOn": [  "build MovieAppsProject" ],
+        "command": "dotnet",
+        "type": "process",
+        "args": [ "ef", "database", "update", "--context", "ApplicationDbContext", "--project" ],
+        "problemMatcher": "$msCompile"
+      },
+      {
+        "label": "InitialCreateAppDbCtx MovieAppsProject",
+        "dependsOn": [  "build MovieAppsProject" ],
+        "command": "dotnet",
+        "type": "process",
+        "args": [ "ef", "migrations", "add", "InitialCreateAppDbCtx", "--context", "AppDbContext", "--output-dir", "Migrations/DataContext", "--project" ],
+        "problemMatcher": "$msCompile"
+      },
+      {
+        "label": "DatabaseUpdateAppDbCtx MovieAppsProject",
+        "dependsOn": [  "build MovieAppsProject" ],
+        "command": "dotnet",
+        "type": "process",
+        "args": [ "ef", "database", "update", "--context", "AppDbContext", "--project" ],
+        "problemMatcher": "$msCompile"
+      }
+
+    ]
+  }

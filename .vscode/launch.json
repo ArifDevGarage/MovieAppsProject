@@ -1,0 +1,103 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug MovieAppsProject (web) (razor)",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "build MovieAppsProject",
+        "program": "${workspaceFolder}/bin/Debug/net9.0/MovieAppsProject.dll",
+        "args": [
+          "--urls", "https://localhost:5305;http://localhost:5306"
+        ],
+        "cwd": "${workspaceFolder}",
+        "stopAtEntry": false,
+        "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        },
+        "console": "integratedTerminal" // Use integrated terminal
+      },
+      {
+          "name": "Debug MovieAppsProject (web) (razor) Debug JS in Chrome",
+          "type": "chrome",
+          "request": "launch",
+          "url": "https://localhost:5205",
+          "webRoot": "${workspaceFolder}/wwwroot",
+          "runtimeExecutable": "D:\\SOFTWARE\\Chromium_Modular\\app_folder\\bin\\chrome.exe",
+          "runtimeArgs": [
+          "--user-data-dir=D:/SOFTWARE/Chromium_Modular/app_folder/profile",
+          "--remote-debugging-port=9222"
+          ],
+          "trace": true, // optional: logs helpful info in debug console
+          "timeout": 10000 // optional: increase attach wait time
+      },   
+
+      {
+        "name": "InitialCreateUsrIdtn MovieAppsProject (web) (razor)",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "InitialCreateUsrIdtn MovieAppsProject",
+        "program": "${workspaceFolder}/bin/Debug/net9.0/MovieAppsProject.dll",
+        "args": [
+          "--urls", "https://localhost:5305;http://localhost:5306"
+        ],
+        "cwd": "${workspaceFolder}/MovieAppsProject",
+        "stopAtEntry": false,
+        "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        },
+        "console": "integratedTerminal" // Use integrated terminal
+      },
+      {
+        "name": "DatabaseUpdateUserIdtn MovieAppsProject (web) (razor)",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "DatabaseUpdateUserIdtn MovieAppsProject",
+        "program": "${workspaceFolder}/bin/Debug/net9.0/MovieAppsProject.dll",
+        "args": [
+          "--urls", "https://localhost:5305;http://localhost:5306"
+        ],
+        "cwd": "${workspaceFolder}/",
+        "stopAtEntry": false,
+        "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        },
+        "console": "integratedTerminal" // Use integrated terminal
+      },
+      {
+        "name": "InitialCreateAppDbCtx MovieAppsProject (web) (razor)",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "InitialCreateAppDbCtx MovieAppsProject",
+        "program": "${workspaceFolder}/bin/Debug/net9.0/MovieAppsProject.dll",
+        "args": [
+          "--urls", "https://localhost:5305;http://localhost:5306"
+        ],
+        "cwd": "${workspaceFolder}/",
+        "stopAtEntry": false,
+        "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        },
+        "console": "integratedTerminal" // Use integrated terminal
+      },
+      {
+        "name": "DatabaseUpdateAppDbCtx MovieAppsProject (web) (razor)",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "DatabaseUpdateAppDbCtx MovieAppsProject",
+        "program": "${workspaceFolder}/bin/Debug/net9.0/MovieAppsProject.dll",
+        "args": [
+          "--urls", "https://localhost:5305;http://localhost:5306"
+        ],
+        "cwd": "${workspaceFolder}/",
+        "stopAtEntry": false,
+        "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        },
+        "console": "integratedTerminal" // Use integrated terminal
+      }
+
+
+
+    ]
+  }
