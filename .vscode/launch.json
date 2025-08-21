@@ -41,7 +41,7 @@
         "args": [
           "--urls", "https://localhost:5305;http://localhost:5306"
         ],
-        "cwd": "${workspaceFolder}/MovieAppsProject",
+        "cwd": "${workspaceFolder}",
         "stopAtEntry": false,
         "env": {
           "ASPNETCORE_ENVIRONMENT": "Development"
@@ -73,7 +73,7 @@
         "args": [
           "--urls", "https://localhost:5305;http://localhost:5306"
         ],
-        "cwd": "${workspaceFolder}/",
+        "cwd": "${workspaceFolder}",
         "stopAtEntry": false,
         "env": {
           "ASPNETCORE_ENVIRONMENT": "Development"
@@ -89,7 +89,7 @@
         "args": [
           "--urls", "https://localhost:5305;http://localhost:5306"
         ],
-        "cwd": "${workspaceFolder}/",
+        "cwd": "${workspaceFolder}",
         "stopAtEntry": false,
         "env": {
           "ASPNETCORE_ENVIRONMENT": "Development"

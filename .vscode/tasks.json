@@ -44,7 +44,8 @@
         "dependsOn": [  "build MovieAppsProject" ],
         "command": "dotnet",
         "type": "process",
-        "args": [ "ef", "migrations", "add", "InitialCreate", "--context", "ApplicationDbContext", "--output-dir", "Migrations/DataContext", "--project" ],
+        "args": [ "ef", "migrations", "add", "InitialCreate", "--context", "ApplicationDbContext", "--output-dir", "Migrations/DataContext" ],
+        "options": { "cwd": "${workspaceFolder}" },
         "problemMatcher": "$msCompile"
       },
       {
@@ -52,7 +53,8 @@
         "dependsOn": [  "build MovieAppsProject" ],
         "command": "dotnet",
         "type": "process",
-        "args": [ "ef", "database", "update", "--context", "ApplicationDbContext", "--project" ],
+        "args": [ "ef", "database", "update", "--context", "ApplicationDbContext" ],
+        "options": {"cwd": "${workspaceFolder}"},
         "problemMatcher": "$msCompile"
       },
       {
@@ -60,7 +62,8 @@
         "dependsOn": [  "build MovieAppsProject" ],
         "command": "dotnet",
         "type": "process",
-        "args": [ "ef", "migrations", "add", "InitialCreateAppDbCtx", "--context", "AppDbContext", "--output-dir", "Migrations/DataContext", "--project" ],
+        "args": [ "ef", "migrations", "add", "InitialCreateAppDbCtx", "--context", "AppDbContext", "--output-dir", "Migrations/DataContext" ],
+        "options": {"cwd": "${workspaceFolder}"},
         "problemMatcher": "$msCompile"
       },
       {
@@ -68,7 +71,8 @@
         "dependsOn": [  "build MovieAppsProject" ],
         "command": "dotnet",
         "type": "process",
-        "args": [ "ef", "database", "update", "--context", "AppDbContext", "--project" ],
+        "args": [ "ef", "database", "update", "--context", "AppDbContext" ],
+        "options": {"cwd": "${workspaceFolder}"},
         "problemMatcher": "$msCompile"
       }
 
