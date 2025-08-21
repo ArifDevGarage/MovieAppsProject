@@ -1,0 +1,61 @@
+@page
+@model MovieAppsProject.Areas.Cinema.Pages.RequestForm.IndexModel
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<h1 class="mb-3">Movies</h1>
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-4">
+        <input name="q" value="@Model.Q" class="form-control" placeholder="Search title..." />
+    </div>
+    <div class="col-md-3">
+        <select name="genreId" class="form-select">
+            <option value="">-- All Genres --</option>
+            @foreach (var g in Model.Genres)
+            {
+                <option value="@g.Id" selected="@(Model.GenreId == g.Id)">
+                    @g.Name
+                </option>
+            }
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-primary w-100" type="submit">Filter</button>
+    </div>
+    <div class="col-md-3 text-end">
+        <a asp-page="Create" class="btn btn-success">+ New Movie</a>
+    </div>
+</form>
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Release</th>
+            <th>Genres</th>
+            <th class="text-center">Avg</th>
+            <th style="width:220px"></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var row in Model.Items)
+    {
+        var m = row.Movie;
+        <tr>
+            <td>@m.Title</td>
+            <td>@(m.ReleaseDate?.ToString("yyyy-MM-dd") ?? "-")</td>
+            <td>@string.Join(", ", m.MovieGenres.Select(x => x.Genre.Name))</td>
+            <td class="text-center">
+                <span class="badge bg-secondary">@row.AvgRating.ToString("0.0")</span>
+            </td>
+            <td class="text-end">
+                <a asp-page="Details" asp-route-id="@m.Id" class="btn btn-sm btn-outline-info">Details</a>
+                <a asp-page="Edit" asp-route-id="@m.Id" class="btn btn-sm btn-outline-primary">Edit</a>
+                <a asp-page="Delete" asp-route-id="@m.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

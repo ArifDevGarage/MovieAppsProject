@@ -1,0 +1,53 @@
+@page
+@model MovieAppsProject.Pages.Admin.Roles.IndexModel
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<h2 class="mb-3">Roles</h2>
+
+<form method="post" asp-page-handler="Create" class="row g-2 mb-4">
+    <div class="col-auto">
+        <input asp-for="NewRoleName" class="form-control" placeholder="New role name" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Create Role</button>
+    </div>
+</form>
+
+@* <partial name="_ValidationSummary" /> *@
+@if (ViewData.ModelState.Any(x => x.Value!.Errors.Any())) 
+{ 
+    <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<table class="table table-bordered table-striped align-middle">
+    <thead>
+        <tr>
+            <th style="width:40%">Role Name</th>
+            <th style="width:20%">Users</th>
+            <th style="width:40%">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var r in Model.RoleRows)
+    {
+        <tr>
+            <td>@r.Name</td>
+            <td>@r.UserCount</td>
+            <td>
+                <form method="post" asp-page-handler="Delete" class="d-inline">
+                    <input type="hidden" name="id" value="@r.Id" />
+                    <button type="submit" class="btn btn-danger"
+                            @(r.UserCount > 0 ? "disabled" : "")>
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

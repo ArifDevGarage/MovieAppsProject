@@ -1,0 +1,63 @@
+## Ignore Visual Studio temporary files, build results, and
+## user-specific files
+
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Build logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# ASP.NET Core secrets
+secrets.json
+#appsettings.Development.json
+#appsettings.Local.json
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# IIS Express
+.vs/
+*.iisexpress
+
+# Test results
+TestResults/
+
+# Publish output
+wwwroot/dist/
+publish/
+*.PublishSettings
+
+# Backup files
+*.bak
+*.old
+*.tmp
+
+# NPM & NodeJS
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# SQLite (optional if using EF with SQLite)
+*.db
+*.db-shm
+*.db-wal
+
+# EF Core Migrations snapshot files (optional)
+**/Migrations/*Snapshot.cs

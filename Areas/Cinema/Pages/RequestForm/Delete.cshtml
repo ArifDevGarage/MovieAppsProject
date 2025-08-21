@@ -1,0 +1,22 @@
+@page "{id:int}"
+@model MovieAppsProject.Areas.Cinema.Pages.RequestForm.DeleteModel
+@{
+    ViewData["Title"] = "Delete Movie";
+}
+
+<h1>Delete Movie</h1>
+
+@if (Model.Movie is null)
+{
+    <div class="alert alert-danger">Movie not found.</div>
+}
+else
+{
+    <div class="alert alert-warning">
+        Are you sure you want to delete <strong>@Model.Movie.Title</strong>?
+    </div>
+    <form method="post">
+        <button class="btn btn-danger">Yes, delete</button>
+        <a asp-page="Details" asp-route-id="@Model.Movie.Id" class="btn btn-secondary">Cancel</a>
+    </form>
+}

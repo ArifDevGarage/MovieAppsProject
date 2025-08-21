@@ -1,0 +1,105 @@
+@page "{id:int}"
+@model MovieAppsProject.Areas.Cinema.Pages.RequestForm.DetailsModel
+@{
+    ViewData["Title"] = "Movie Details";
+    var m = Model.Movie!;
+}
+
+<div class="d-flex align-items-center mb-3">
+    <h1 class="me-3 mb-0">@m.Title</h1>
+    <span class="badge bg-secondary">
+        @Model.AverageRating.ToString("0.0")
+    </span>
+    <small class="text-muted ms-2">(@Model.RatingsCount)</small>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h5>Overview</h5>
+                <p>@(string.IsNullOrWhiteSpace(m.Overview) ? "—" : m.Overview)</p>
+
+                <dl class="row">
+                    <dt class="col-sm-3">Release Date</dt>
+                    <dd class="col-sm-9">@(m.ReleaseDate?.ToString("yyyy-MM-dd") ?? "—")</dd>
+
+                    <dt class="col-sm-3">Runtime</dt>
+                    <dd class="col-sm-9">@(m.RuntimeMinutes?.ToString() ?? "—") min</dd>
+
+                    <dt class="col-sm-3">Budget</dt>
+                    <dd class="col-sm-9">@(m.Budget?.ToString("N2") ?? "—")</dd>
+
+                    <dt class="col-sm-3">Genres</dt>
+                    <dd class="col-sm-9">
+                        @string.Join(", ", m.MovieGenres.Select(x => x.Genre.Name))
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5>Cast</h5>
+                @if (Model.Cast.Count == 0)
+                {
+                    <p class="text-muted mb-0">No cast recorded.</p>
+                }
+                else
+                {
+                    <ul class="list-group list-group-flush">
+                    @foreach (var c in Model.Cast)
+                    {
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span><strong>@c.Person.FullName</strong> as @c.CharacterName</span>
+                            <span class="text-muted">#@c.Order</span>
+                        </li>
+                    }
+                    </ul>
+                }
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5>Crew</h5>
+                @if (Model.Crew.Count == 0)
+                {
+                    <p class="text-muted mb-0">No crew recorded.</p>
+                }
+                else
+                {
+                    var groups = Model.Crew.GroupBy(c => c.Department);
+                    foreach (var grp in groups)
+                    {
+                        <h6 class="mt-2">@grp.Key</h6>
+                        <ul class="list-inline">
+                        @foreach (var c in grp)
+                        {
+                            <li class="list-inline-item mb-1">
+                                <span class="badge bg-light text-dark border">
+                                    <strong>@c.Job</strong>: @c.Person.FullName
+                                </span>
+                            </li>
+                        }
+                        </ul>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="ratio ratio-2x3">
+                <img src="@(m.PosterUrl ?? "")" class="img-fluid rounded-start"
+                     alt="Poster" onerror="this.src='https://via.placeholder.com/500x750?text=Poster';" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-page="Index" class="btn btn-secondary">Back</a>
+    <a asp-page="Edit" asp-route-id="@m.Id" class="btn btn-primary">Edit</a>
+</div>

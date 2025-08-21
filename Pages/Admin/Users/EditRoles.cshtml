@@ -1,0 +1,27 @@
+@page
+@model MovieAppsProject.Pages.Admin.Users.EditRolesModel
+@{
+    ViewData["Title"] = "Edit User Roles";
+}
+
+<h2 class="mb-3">Edit Roles</h2>
+<div class="mb-2">
+    <strong>User:</strong> @Model.Email (@Model.UserId)
+</div>
+
+<form method="post">
+    <div class="list-group mb-3">
+        @for (int i = 0; i < Model.Roles.Count; i++)
+        {
+            <label class="list-group-item d-flex align-items-center">
+                <input type="checkbox" class="form-check-input me-2"
+                       asp-for="Roles[i].IsSelected" />
+                <input type="hidden" asp-for="Roles[i].RoleName" />
+                @Model.Roles[i].RoleName
+            </label>
+        }
+    </div>
+
+    <button class="btn btn-primary" type="submit">Save</button>
+    <a asp-page="/Admin/Users/Index" class="btn btn-secondary">Cancel</a>
+</form>
